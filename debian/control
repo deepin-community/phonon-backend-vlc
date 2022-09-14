@@ -1,0 +1,54 @@
+Source: phonon-backend-vlc
+Section: sound
+Priority: optional
+Maintainer: Deepin Developer <deepin-dev@deepin.org>
+Uploaders: Deepin Packages Builder <packages@deepin.org>
+Build-Depends: cmake (>= 2.8.9~),
+               debhelper (>= 9),
+               extra-cmake-modules,
+               libphonon-dev (>= 4:4.10.0~),
+               libphonon4qt5-dev (>= 4:4.10.0~),
+               libphonon4qt5experimental-dev (>= 4:4.10.0~),
+               libphononexperimental-dev (>= 4:4.10.0~),
+               libqt4-dev (>= 4:4.6.0),
+               libv4l-dev [linux-any],
+               libvlc-dev (>= 2.0.1),
+               libvlccore-dev (>= 2.0.1),
+               libx11-dev,
+               pkg-config,
+               pkg-kde-tools (>= 0.12),
+               qtbase5-dev,
+Standards-Version: 4.3.0
+Homepage: https://cgit.kde.org/phonon-vlc.git
+
+Package: phonon-backend-vlc
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: vlc-plugin-base,
+         vlc-plugin-video-output,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Provides: phonon-backend
+Description: Phonon VLC backend
+ Phonon is the Qt 4 multimedia API, which provides a task-oriented
+ abstraction layer for capturing, mixing, processing, and playing audio
+ and video content.
+ .
+ This package contains VLC backend for Phonon.
+
+Package: phonon4qt5-backend-vlc
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: vlc-plugin-base,
+         vlc-plugin-video-output,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Provides: phonon4qt5-backend
+Description: Phonon4Qt5 VLC backend
+ Phonon is the KF5 multimedia API, which provides a task-oriented
+ abstraction layer for capturing, mixing, processing, and playing audio
+ and video content.
+ .
+ This package contains VLC backend for Phonon4Qt5.
