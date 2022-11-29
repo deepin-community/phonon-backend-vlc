@@ -1,41 +1,28 @@
 Source: phonon-backend-vlc
 Section: sound
 Priority: optional
-Maintainer: Deepin Developer <deepin-dev@deepin.org>
-Uploaders: Deepin Packages Builder <packages@deepin.org>
-Build-Depends: cmake (>= 2.8.9~),
-               debhelper (>= 9),
-               extra-cmake-modules,
-               libphonon-dev (>= 4:4.10.0~),
-               libphonon4qt5-dev (>= 4:4.10.0~),
-               libphonon4qt5experimental-dev (>= 4:4.10.0~),
-               libphononexperimental-dev (>= 4:4.10.0~),
-               libqt4-dev (>= 4:4.6.0),
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Modestas Vainius <modax@debian.org>,
+           Diane Trout <diane@ghic.org>,
+           Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>,
+Build-Depends: cmake (>= 3.5~),
+               debhelper-compat (= 13),
+               extra-cmake-modules (>= 5.60~),
+               libphonon4qt5-dev (>= 4:4.10.60~),
+               libphonon4qt5experimental-dev (>= 4:4.10.60~),
                libv4l-dev [linux-any],
-               libvlc-dev (>= 2.0.1),
-               libvlccore-dev (>= 2.0.1),
+               libvlc-dev (>= 2.1.0),
+               libvlccore-dev (>= 2.1.0),
                libx11-dev,
                pkg-config,
                pkg-kde-tools (>= 0.12),
                qtbase5-dev,
-Standards-Version: 4.3.0
-Homepage: https://cgit.kde.org/phonon-vlc.git
-
-Package: phonon-backend-vlc
-Architecture: any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: vlc-plugin-base,
-         vlc-plugin-video-output,
-         ${misc:Depends},
-         ${shlibs:Depends},
-Provides: phonon-backend
-Description: Phonon VLC backend
- Phonon is the Qt 4 multimedia API, which provides a task-oriented
- abstraction layer for capturing, mixing, processing, and playing audio
- and video content.
- .
- This package contains VLC backend for Phonon.
+               qttools5-dev,
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+Homepage: https://commits.kde.org/phonon-vlc
+Vcs-Browser: https://salsa.debian.org/qt-kde-team/extras/phonon-backend-vlc
+Vcs-Git: https://salsa.debian.org/qt-kde-team/extras/phonon-backend-vlc.git
 
 Package: phonon4qt5-backend-vlc
 Architecture: any

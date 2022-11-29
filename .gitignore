@@ -1,1 +1,12 @@
-.pc/
+.svn
+Makefile
+CMakeTmp
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+cmake_uninstall.cmake
+lib/
+*.o
+*.so
+*.user
+build
