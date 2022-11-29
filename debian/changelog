@@ -1,5 +1,364 @@
-phonon-backend-vlc (0.10.2-1) stable; urgency=medium
+phonon-backend-vlc (0.11.3-1) unstable; urgency=medium
 
-  * ['Rebuild  against by  current gcc 11.2']
+  * Team upload.
+  * New upstream release.
 
- -- Deepin Packages Builder <packages@deepin.org>  Wed, 14 Sep 2022 15:13:03 +0800
+ -- Pino Toscano <pino@debian.org>  Sun, 15 Aug 2021 18:59:43 +0200
+
+phonon-backend-vlc (0.11.2-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Bump the debhelper compatibility to 13:
+    - switch the debhelper build dependency to debhelper-compat 13
+    - remove debian/compat
+  * Bump Standards-Version to 4.5.1, no changes required.
+  * Remove the explicit as-needed linking, as it is done by binutils now.
+  * Add Rules-Requires-Root: no.
+  * Switch Homepage to https://commits.kde.org/phonon-vlc.
+  * Update the references to the upstream Git repository in
+    debian/upstream/metadata.
+
+ -- Pino Toscano <pino@debian.org>  Fri, 05 Feb 2021 00:34:41 +0100
+
+phonon-backend-vlc (0.11.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Update the build dependencies according to the upstream build system:
+    - bump cmake to 3.5
+    - bump extra-cmake-modules to 5.60
+    - bump libphonon4qt5-dev, and libphonon4qt5experimental-dev to 4:4.10.60
+    - bump libvlc-dev, and libvlccore-dev to 2.1.0
+  * Drop the -DPHONON_BUILD_PHONON4QT5=ON cmake parameter, as it is no more
+    needed now.
+  * Stop passing --fail-missing to dh_missing, as there is only one binary now
+    (and thus everything is already installed there).
+  * Switch from dhmk to the dh sequencer:
+    - invoke the dh sequencer using the kf5 addon
+    - explicitly link in as-needed mode
+    - remove the -DPLUGIN_INSTALL_DIR cmake parameter, as the right plugin
+      directory is detected automatically now
+  * Bump Standards-Version to 4.4.1, no changes required.
+  * Add the configuration for the CI on salsa.
+
+ -- Pino Toscano <pino@debian.org>  Wed, 06 Nov 2019 19:27:49 +0100
+
+phonon-backend-vlc (0.10.3-2) unstable; urgency=medium
+
+  * Drop Qt 4 support (Closes: #875088).
+  * Fail the build if there are missing files not installed.
+  * Remove dbg migration command.
+  * Switch to debhelper compatibility 12.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Fri, 30 Aug 2019 16:08:05 -0300
+
+phonon-backend-vlc (0.10.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Add the qttools5-dev build dependency, needed for translations.
+  * Update install files.
+  * Bump Standards-Version to 4.4.0, no changes required.
+
+ -- Pino Toscano <pino@debian.org>  Tue, 30 Jul 2019 07:14:04 +0200
+
+phonon-backend-vlc (0.10.2-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Update Vcs-* fields.
+  * Bump Standards-Version to 4.3.0, no changes required.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 12 Jan 2019 13:03:01 +0100
+
+phonon-backend-vlc (0.10.1-2) sid; urgency=medium
+
+  * New revision
+  * Update Vcs fields
+  * Bump phonon build dependency version
+  * Release to sid
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 28 Feb 2018 11:07:25 +0100
+
+phonon-backend-vlc (0.10.1-1) experimental; urgency=medium
+
+  * New upstream release (0.10.1).
+  * Update build-deps and deps with the info from cmake
+  * Bump to Standards-Version 4.1.3
+  * Release to experimental
+
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 27 Feb 2018 10:50:15 +0100
+
+phonon-backend-vlc (0.9.1-2) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+
+  [ Maximiliano Curia ]
+  * Update uploaders list as requested by MIA team (Closes: #879420)
+
+  [ Pino Toscano ]
+  * Update watch file.
+  * Bump Standards-Version to 4.1.2, no changes required.
+  * Remove obsolete URL in copyright.
+
+ -- Pino Toscano <pino@debian.org>  Fri, 22 Dec 2017 13:04:47 +0100
+
+phonon-backend-vlc (0.9.1-1) experimental; urgency=medium
+
+  * New upstream release (0.9.1).
+  * Update upstream metadata
+  * Bump Standards-Version to 4.0.0, no changes needed.
+  * Point homepage to the git frontend
+  * Update watch file, add upstream signing-key.asc
+  * Drop upstream applied patch
+  * Release to experimental
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 12 Jul 2017 13:41:18 +0200
+
+phonon-backend-vlc (0.9.0-2) unstable; urgency=medium
+
+  * Use the new split vlc plugin packages.
+    Thanks to Sebastian Ramacher for the report (Closes: 841448)
+
+ -- Maximiliano Curia <maxy@debian.org>  Fri, 21 Oct 2016 12:15:08 +0200
+
+phonon-backend-vlc (0.9.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release (0.9.0).
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 18 May 2016 20:05:11 +0200
+
+phonon-backend-vlc (0.8.2-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Add myself to Uploaders.
+
+  [ Felix Geyer ]
+  * New upstream release.
+  * Add extra-cmake-modules to build-depends, fixing FTBFS.
+  * Drop automoc from build-depends, cmake's internal one is used.
+  * Fix the watch file.
+  * Bump Standards-Version to 3.9.6, no changes needed.
+  * Make vlc a hard dependency as it contains the pulseaudio and video plugins.
+    (Closes: #769469)
+
+ -- Felix Geyer <fgeyer@debian.org>  Tue, 01 Sep 2015 21:04:27 +0200
+
+phonon-backend-vlc (0.8.0-2) unstable; urgency=medium
+
+  * Build Phonon Qt5 backend as well as the Qt4 backend.
+  * Add myself to uploaders.
+
+ -- Diane Trout <diane@ghic.org>  Sat, 13 Sep 2014 16:34:19 -0700
+
+phonon-backend-vlc (0.8.0-1) unstable; urgency=medium
+
+  * Team upload.
+
+  * New upstream release (0.8.0).
+
+ -- Maximiliano Curia <maxy@debian.org>  Fri, 12 Sep 2014 17:51:02 +0200
+
+phonon-backend-vlc (0.7.2-1) unstable; urgency=medium
+
+  [ Sune Vuorela ]
+  * Add vlc-plugin-pulse to Depends. It ensures that audio works out of the
+    box for pulse-audio users and has no disadvantages for users that doesn't
+    use pulse-audio. (Closes: #689805)
+
+  [ Maximiliano Curia ]
+  * Update watch file.
+  * New upstream release.
+
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 22 Jul 2014 09:24:29 +0200
+
+phonon-backend-vlc (0.7.1-1) unstable; urgency=low
+
+  * Team upload.
+  * New upstream release.
+    - Ensure that PulseAudio environment is set up when running older
+      backends (Closes: #730131).
+  * Bump build dependencies.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Mon, 09 Dec 2013 16:39:27 -0300
+
+phonon-backend-vlc (0.7.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Team upload.
+
+  [ Pino Toscano ]
+  * Bump the debhelper compatibility to 9:
+    - bump compat to 9
+    - bump the debhelper build dependency to >= 9
+  * Update Vcs-* headers.
+  * Fix watch file.
+  * Convert to multiarch:
+    - install the plugin in a multiarch location
+    - mark all the packages as Multi-Arch: same
+    - add ${misc:Pre-Depends} in phonon-backend-vlc
+
+  [ Modestas Vainius ]
+  * Require phonon 4.7.0(.0).
+  * Bump Standards-Version to 3.9.5: no further changes needed.
+
+ -- Modestas Vainius <modax@debian.org>  Tue, 05 Nov 2013 13:11:51 +0200
+
+phonon-backend-vlc (0.6.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Modestas Vainius <modax@debian.org>  Tue, 28 May 2013 22:48:19 +0300
+
+phonon-backend-vlc (0.6.2-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Modestas Vainius <modax@debian.org>  Wed, 13 Feb 2013 21:20:05 +0200
+
+phonon-backend-vlc (0.6.1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Require libvlc 2.0.1, needed by upstream.
+  * update to the new Homepage URL (Closes: #689255)
+  * Bump Standards-Version to 3.9.4: no changes needed.
+  * Add explicit build dependency on libvlccore-dev since as of vlc 2.0.5,
+    libvlc-dev no longer depends on it.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 27 Jan 2013 19:24:25 +0200
+
+phonon-backend-vlc (0.6.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Modestas Vainius <modax@debian.org>  Sat, 18 Aug 2012 11:50:01 +0300
+
+phonon-backend-vlc (0.5.0+14.g382da0d-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Modestas Vainius <modax@debian.org>  Fri, 29 Jun 2012 00:33:09 +0300
+
+phonon-backend-vlc (0.5.0+14.g382da0d-1) experimental; urgency=low
+
+  * New upstream snapshot from 0.5 branch (2012-06-18 03:38 am):
+    - fixes a problem with volume going up to 100% upon resume. It only
+      affected PulseAudio users. (Closes: #662103)
+  * Bump Standards-Version to 3.9.3: no changes needed.
+  * Add debian/watch file.
+
+ -- Modestas Vainius <modax@debian.org>  Thu, 28 Jun 2012 02:30:31 +0300
+
+phonon-backend-vlc (0.5.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Require phonon 4.6.0 to build.
+  * Build-depend on libphononexperimental-dev.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 19 Feb 2012 18:58:31 +0200
+
+phonon-backend-vlc (0.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Modestas Vainius <modax@debian.org>  Mon, 01 Aug 2011 20:05:48 +0300
+
+phonon-backend-vlc (0.4.0-2) unstable; urgency=low
+
+  * Replace $(overriden_command) with $(overridden_command) in debian/rules.
+    Requires pkg-kde-tools 0.12. (Closes: #634594)
+
+ -- Modestas Vainius <modax@debian.org>  Tue, 19 Jul 2011 13:26:42 +0300
+
+phonon-backend-vlc (0.4.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.2: no changes needed.
+
+ -- Modestas Vainius <modax@debian.org>  Tue, 26 Apr 2011 22:40:50 +0300
+
+phonon-backend-vlc (0.3.2-3) unstable; urgency=low
+
+  * Port to dhmk based qt-kde-team/2/*, require pkg-kde-tools 0.11.
+  * Drop ${shlibs:Depends} from phonon-backend-gstreamer-dbg Depends, not
+    needed.
+  * Release to unstable.
+
+ -- Modestas Vainius <modax@debian.org>  Fri, 11 Mar 2011 22:16:49 +0200
+
+phonon-backend-vlc (0.3.2-2) experimental; urgency=low
+
+  * Require phonon 4:4.6.0really4.4.4. (Closes: #616534)
+
+ -- Modestas Vainius <modax@debian.org>  Sat, 05 Mar 2011 12:39:04 +0200
+
+phonon-backend-vlc (0.3.2-1) experimental; urgency=low
+
+  * New upstream release.
+  * Drop disable_usr_lib_install_rpath.diff patch, no longer needed.
+  * Pass -DPLUGIN_INSTALL_DIR=/usr/lib/qt4/ to cmake in order to install
+    the backend to non-kde specific plugin directory.
+  * Do not use debhelper kde build system, this is not KDE package.
+  * Build-Depend on libx11-dev.
+  * Add vlc package to phonon-backend-vlc Recommends. It's needed for video
+    output.
+
+ -- Modestas Vainius <modax@debian.org>  Sat, 05 Mar 2011 03:46:37 +0200
+
+phonon-backend-vlc (0.3.1-3) experimental; urgency=low
+
+  * Merge 0.2.0-2.
+
+ -- Modestas Vainius <modax@debian.org>  Thu, 06 Jan 2011 17:41:43 +0200
+
+phonon-backend-vlc (0.3.1-2) experimental; urgency=low
+
+  [ Modestas Vainius ]
+  * Build-Depend on libv4l-dev on linux arches to enable support for listing
+    V4L devices.
+
+ -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Sat, 18 Dec 2010 19:44:52 +0200
+
+phonon-backend-vlc (0.3.1-1) experimental; urgency=low
+
+  * New upstream release.
+
+  [ Modestas Vainius ]
+  * Add myself to Uploaders.
+  * Bump Standards-Version to 3.9.1: no changes needed.
+  * Update Vcs-* fields in debian/control.
+  * Require libvlc-dev 1.1.1.
+  * Require libphonon-dev 4.4.3 to enable all backend features.
+  * Add disable_usr_lib_install_rpath.diff patch to disable /usr/lib RPATH.
+
+ -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 08 Dec 2010 01:20:01 +0200
+
+phonon-backend-vlc (0.2.0-2) unstable; urgency=medium
+
+  * Add myself to Uploaders.
+  * Make phonon-backend-vlc depend on vlc-nox. (Closes: #609103)
+  * Add disable_usr_lib_install_rpath.diff patch to disable /usr/lib RPATH.
+    (fixes binary-or-shlib-defines-rpath lintian error which is rejected by
+    ftp-master)
+  * Urgency=medium, multiple RC problems fixed.
+
+ -- Modestas Vainius <modax@debian.org>  Thu, 06 Jan 2011 17:37:19 +0200
+
+phonon-backend-vlc (0.2.0-1) unstable; urgency=low
+
+  * New upstream release:
+    - add missing ogg vorbis mimetype (Closes: #589610).
+  * Upload to Sid.
+
+ -- Fathi Boudra <fabo@debian.org>  Sat, 24 Jul 2010 21:00:35 +0300
+
+phonon-backend-vlc (0.0.1~git1+1b1ce593-1) experimental; urgency=low
+
+  * Initial release. (Closes: #587619)
+
+ -- Fathi Boudra <fabo@debian.org>  Wed, 30 Jun 2010 13:08:34 +0300

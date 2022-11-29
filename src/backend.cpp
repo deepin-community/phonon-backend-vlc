@@ -36,6 +36,7 @@
 #include "audio/audiooutput.h"
 #include "audio/audiodataoutput.h"
 #include "audio/volumefadereffect.h"
+#include "config.h"
 #include "devicemanager.h"
 #include "effect.h"
 #include "effectmanager.h"
@@ -47,14 +48,7 @@
 #ifdef PHONON_EXPERIMENTAL
 #include "video/videodataoutput.h"
 #endif
-#ifndef PHONON_NO_GRAPHICSVIEW
-#include "video/videographicsobject.h"
-#endif
 #include "video/videowidget.h"
-
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-Q_EXPORT_PLUGIN2(phonon_vlc, Phonon::VLC::Backend)
-#endif
 
 namespace Phonon
 {
@@ -76,7 +70,7 @@ Backend::Backend(QObject *parent, const QVariantList &)
     setProperty("backendComment", QLatin1String("VLC backend for Phonon"));
     setProperty("backendVersion", QLatin1String(PHONON_VLC_VERSION));
     setProperty("backendIcon",    QLatin1String("vlc"));
-    setProperty("backendWebsite", QLatin1String("https://projects.kde.org/projects/kdesupport/phonon/phonon-vlc"));
+    setProperty("backendWebsite", QLatin1String("https://commits.kde.org/phonon-vlc"));
 
     // Check if we should enable debug output
     int debugLevel = qgetenv("PHONON_BACKEND_DEBUG").toInt();
@@ -111,12 +105,10 @@ Backend::Backend(QObject *parent, const QVariantList &)
             const QString id = QString("org.kde.phonon.%1").arg(qApp->applicationName());
             const QString version = qApp->applicationVersion();
             QString icon;
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
             if (!qApp->windowIcon().isNull()){
                 // Try to get the fromTheme() name of the QIcon.
                 icon = qApp->windowIcon().name();
             }
-#endif
             if (icon.isEmpty()) {
                 // If we failed to get a proper icon name, use the appname instead.
                 icon = qApp->applicationName().toLower();
@@ -195,10 +187,8 @@ QObject *Backend::createObject(BackendInterface::Class c, QObject *parent, const
     case VideoDataOutputClass:
         return new VideoDataOutput(parent);
 #endif
-#ifndef PHONON_NO_GRAPHICSVIEW
     case VideoGraphicsObjectClass:
-        return new VideoGraphicsObject(parent);
-#endif
+        return nullptr; // No longer supported
     case EffectClass:
         return effectManager()->createEffect(args[0].toInt(), parent);
     case VideoWidgetClass:

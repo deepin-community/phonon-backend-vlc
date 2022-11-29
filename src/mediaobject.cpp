@@ -4,7 +4,7 @@
     Copyright (C) 2009 Fathi Boudra <fabo@kde.org>
     Copyright (C) 2010 Ben Cooksley <sourtooth@gmail.com>
     Copyright (C) 2009-2011 vlc-phonon AUTHORS <kde-multimedia@kde.org>
-    Copyright (C) 2010-2015 Harald Sitter <sitter@kde.org>
+    Copyright (C) 2010-2021 Harald Sitter <sitter@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -25,6 +25,8 @@
 #include <QtCore/QDir>
 #include <QtCore/QStringBuilder>
 #include <QtCore/QUrl>
+
+#include <phonon/pulsesupport.h>
 
 #include <vlc/libvlc_version.h>
 #include <vlc/vlc.h>
@@ -54,6 +56,7 @@ MediaObject::MediaObject(QObject *parent)
     qRegisterMetaType<QMultiMap<QString, QString> >("QMultiMap<QString, QString>");
 
     m_player = new MediaPlayer(this);
+    Q_ASSERT(m_player);
     if (!m_player->libvlc_media_player())
         error() << "libVLC:" << LibVLC::errorMessage();
 
@@ -75,6 +78,17 @@ MediaObject::MediaObject(QObject *parent)
 MediaObject::~MediaObject()
 {
     unloadMedia();
+    // Shutdown the pulseaudio mainloop before the MediaPlayer gets destroyed
+    // (it is a child of the MO). There appears to be a peculiar race condition
+    // between the pa_thread_mainloop used by VLC and the pa_glib_mainloop used
+    // by Phonon's PulseSupport where for a very short time frame after the
+    // former was stopped and freed the latter can run and fall over
+    //   Invalid read from eventfd: Bad file descriptor
+    //   Code should not be reached at pulsecore/fdsem.c:157, function flush(). Aborting.
+    // Since we don't use PulseSupport since VLC 2.2 we can simply force a
+    // loop shutdown even when the application isn't about to terminate.
+    // The instance gets created again anyway.
+    PulseSupport::shutdown();
 }
 
 void MediaObject::resetMembers()
@@ -95,6 +109,10 @@ void MediaObject::resetMembers()
     m_stateAfterBuffering = ErrorState;
 
     resetMediaController();
+
+    // Forcefully shutdown plusesupport to prevent crashing between the PS PA glib mainloop
+    // and the VLC PA threaded mainloop. See destructor.
+    PulseSupport::shutdown();
 }
 
 void MediaObject::play()
